@@ -1,5 +1,6 @@
 'use client';
 
+import { requestPasswordReset } from '@/app/lib/auth-client';
 import {
   Button,
   FieldError,
@@ -7,10 +8,12 @@ import {
   Input,
   Label,
   TextField,
+
 } from '@heroui/react';
 
+
 export function ForgotPaswword() {
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data: Record<string, string> = {};
@@ -20,7 +23,13 @@ export function ForgotPaswword() {
       data[key] = value.toString();
     });
 
-    alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
+    const resData = await requestPasswordReset({
+      email: data.email,
+      redirectTo: '/reset-password',
+    });
+
+    
+    console.log(resData);
   };
 
   return (
