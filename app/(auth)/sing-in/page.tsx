@@ -10,6 +10,7 @@ import {
   Label,
   TextField,
 } from '@heroui/react';
+import Link from 'next/link';
 
 export function SingIn() {
   const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
@@ -80,7 +81,9 @@ export function SingIn() {
           Fronget password
         </Button>
       </div>
+    <p><small>Forgotpaswword? <Link className=' bg-blue-500' href='/forgot-password'>Click here</Link></small></p>
     </Form>
+    
   );
 }
 export default SingIn;
